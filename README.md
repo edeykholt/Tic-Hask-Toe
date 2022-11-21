@@ -2,6 +2,8 @@
 
 This repository contains a preconfigured Haskell development environment, allowing you to start coding in Haskell with zero installation using [Gitpod](https://www.gitpod.io/) and a browser-based version of VS Code.
 
+[Eykholt Gitpod](https://edeykholt-tichasktoe-7afrihh6vqw.ws-us77.gitpod.io/)
+
 The environment contains a guided Tic-Tac-Toe project, designed as a companion to the first part of EMURGO Academy's Haskell course.
 
 ## Create Your Environment
