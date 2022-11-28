@@ -28,14 +28,30 @@ _INVALID_MOVE_ = (-1, -1)
 
 -- Q#05
 
-_SEP_ :: [Char]
+_SEP_ :: String
 _SEP_ = "_|_"
 
 -- *** Assignment 1-2 *** --
 
 -- Q#06
-data Square
 
+
+
+-- type Square = Char
+  -- Eq (Label s)
+  -- Square x => Show (Label y)
+-- type X = Square 
+-- type O = Square
+-- type B = Square
+
+data Square = E | X | O 
+  deriving (Eq, Show)  
+
+-- instance Show Square where
+  -- show :: String -> String
+  -- show X = "X"
+  -- show O = "O"
+  -- show E = "_"
 
 -- Q#07
 data GameState
