@@ -56,9 +56,7 @@ type Board = [] Row
 type Move = (Int, Int)
 
 -- Q#09
-
 getFirstPlayer :: Bool -> Player
-
 getFirstPlayer a =
     if a 
       then X 
@@ -67,20 +65,30 @@ getFirstPlayer_ a
   | a = X
   | otherwise = O
 
-
-
-
-
-
 -- Q#10
-
-showGameState gs = undefined
+-- receives a `GameState` value and returns a string message describing the current game state.
+showGameState :: GameState -> String
+showGameState gs =
+  case gs of 
+    XWon -> "X Won"
+    OWon -> "O Won"
+    Tie -> "Tie"
+    _ -> "InProgress"
 
 -- Q#11
-
-switchPlayer = undefined
-
+-- receives an `Player` value and returns a new `Player` value.
+switchPlayer :: Player -> Player
+switchPlayer p =
+  case p of
+    X -> O
+    O -> X
+    E -> E
 
 -- Q#12
+-- receives a `Square` value and returns a string representation of it 
+showSquare :: Square -> String
+showSquare s =
+  case s of
+    E -> "_"
+    _ -> show s
 
-showSquare = undefined
