@@ -34,16 +34,6 @@ _SEP_ = "_|_"
 -- *** Assignment 1-2 *** --
 
 -- Q#06
-
-
-
--- type Square = Char
-  -- Eq (Label s)
-  -- Square x => Show (Label y)
--- type X = Square 
--- type O = Square
--- type B = Square
-
 data Square = E | X | O 
   deriving (Eq, Show)  
 
@@ -54,22 +44,33 @@ data Square = E | X | O
   -- show E = "_"
 
 -- Q#07
-data GameState
+data GameState = XWon | OWon | Tie | InProgress
+  deriving (Eq, Show)
 
 
 -- Q#08
-
-
-
-
-
+type Player = Square
+type Row = [Square]
+type Line = [] Square
+type Board = [] Row
+type Move = (Int, Int)
 
 -- Q#09
 
-getFirstPlayer = undefined
+getFirstPlayer :: Bool -> Player
+
+getFirstPlayer a =
+    if a 
+      then X 
+      else O
+getFirstPlayer_ a
+  | a = X
+  | otherwise = O
 
 
-getFirstPlayer_ = undefined
+
+
+
 
 -- Q#10
 
