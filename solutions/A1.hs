@@ -5,34 +5,26 @@ import Data.Char (toUpper)
 -- *** Assignment 1-1 *** --
 
 -- Q#01
-
 _SIZE_ :: Int
 _SIZE_ = 3
 
 -- Q#02
-
 _DISPLAY_LOGO_ :: Bool
 _DISPLAY_LOGO_ = False
 
 -- Q#03
-
 convertRowIndex :: Char -> Int
 convertRowIndex a = ( fromEnum ( toUpper a ) ) - 65
 
 -- Q#04
-
 _INVALID_MOVE_ :: (Int, Int)
 _INVALID_MOVE_ = (-1, -1)
 
-
-
 -- Q#05
-
 _SEP_ :: String
 _SEP_ = "_|_"
 
 -- *** Assignment 1-2 *** --
-
 -- Q#06
 data Square = E | X | O 
   deriving (Eq, Show)  
