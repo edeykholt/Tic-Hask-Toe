@@ -96,7 +96,9 @@ formatLine s = _SEP_ ++ myLine ++ _SEP_
 
 -- Q#08
 
-isMoveInBounds = undefined
+isMoveInBounds :: (Int, Int) -> Bool
+isMoveInBounds (row, col) = isOnBoard row && isOnBoard col
+    where isOnBoard value = value <= _SIZE_ && value >= 0
 
 -- Q#09
 
