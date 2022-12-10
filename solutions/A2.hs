@@ -95,14 +95,30 @@ formatLine s = _SEP_ ++ myLine ++ _SEP_
 -- *** Assignment 2-2 *** --
 
 -- Q#08
-
+-- takes a `Move` a input. It should return a boolean value indicating whether the `Move`'s coordinates fall within the dimensions of the game board.
 isMoveInBounds :: (Int, Int) -> Bool
 isMoveInBounds (row, col) = isOnBoard row && isOnBoard col
     where isOnBoard value = value <= _SIZE_ && value >= 0
 
 -- Q#09
-
-stringToMove = undefined
+-- takes a move in string format (i.e. `"B1"`) and returns a corresponding `Move` value.
+stringToMove :: [Char] -> (Int, Int)
+stringToMove [] = _INVALID_MOVE_
+stringToMove (rowChar:colChar:xs) =
+    if not (isDigit colChar)
+        || xs /= []
+        || rowIndex < 0
+        || rowIndex > _SIZE_
+        || colIndex < 0
+        || colIndex > _SIZE_ 
+    then  _INVALID_MOVE_ 
+    else (rowIndex, colIndex)
+    where 
+        rowIndex :: Int
+        rowIndex = convertRowIndex rowChar
+        colIndex :: Int
+        colIndex = readDigit colChar
+stringToMove [_] = _INVALID_MOVE_
 
 -- Q#10
 
