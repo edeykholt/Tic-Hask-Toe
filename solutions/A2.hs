@@ -13,12 +13,12 @@ promptPlayer :: Player -> String
 promptPlayerPrefix = "Player "
 promptPlayerPostfix = "'s turn: enter a row and column position (ex. A1)"
 realPlayerPrompt p = concat [promptPlayerPrefix, show p, promptPlayerPostfix]
-promptPlayer p = 
+promptPlayer p =
     case p of
         X -> realPlayerPrompt p
         O -> realPlayerPrompt p
         _ -> "No turn available for empty space or player"
-    
+
 -- Q#02
 _RANGE_ = [0 .. _SIZE_-1]
 
@@ -30,7 +30,7 @@ isDigit x = x `elem` lChars
 
 -- takes a character value and returns the corresponding `Int` value if it's a valid digit. If a non-digit character is given, return `-1` as a default value.
 readDigit :: Char -> Int
-readDigit c = 
+readDigit c =
     if isDigit c
         then
             -- let cString = singleton c
@@ -46,11 +46,42 @@ _EMPTY_BOARD_ :: Board
 _EMPTY_BOARD_ = replicate _SIZE_ _EMPTY_ROW_
 
 -- Q#05
+-- isNoEmpties :: Board -> Bool
+boardAsSquares :: Board -> [Square]
+boardAsSquares b = concat b
 
-isTied = undefined
+isBoardComplete :: Board -> Bool
+isBoardComplete b = E `notElem` boardAsSquares b
 
+-- count the number of squares of provided datatype.
+countSquareData :: Square -> [Square] -> Int
+countSquareData a [] = 0
+countSquareData a (b : bs)
+    | a==b = 1 + countSquareData a bs
+    | otherwise = countSquareData a bs
 
-_TIED_BOARD_ = undefined
+countSquaresInBoard :: Square -> Board -> Int
+countSquaresInBoard a b = countSquareData a (boardAsSquares b)
+
+-- A game is tied if it contains no empty squares.
+isTied b = isBoardComplete b
+-- isTied :: Board -> Bool
+-- isTied b = countSquaresInBoard X b  == countSquaresInBoard O b
+        
+
+_TIED_BOARD_ :: Board
+_TIED_BOARD_ = [
+        [X, O, O]
+      , [O, X, X]
+      , [O, X, O]
+      ]
+
+_INCOMPLETE_BOARD_ :: Board
+_INCOMPLETE_BOARD_ = [
+        [X, O, E]
+      , [O, X, X]
+      , [O, X, O]
+      ]
 
 -- Q#06
 
