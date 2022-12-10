@@ -84,12 +84,13 @@ _INCOMPLETE_BOARD_ = [
       ]
 
 -- Q#06
-
-indexRowStrings = undefined
+indexRowStrings :: [String] -> [(Char, String)]
+indexRowStrings a = zip ['A'.. ] a
 
 -- Q#07
-
-formatLine = undefined
+formatLine :: [String] -> String
+formatLine s = _SEP_ ++ myLine ++ _SEP_
+    where myLine = intercalate _SEP_ s
 
 -- *** Assignment 2-2 *** --
 
