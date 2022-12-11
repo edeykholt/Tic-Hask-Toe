@@ -37,12 +37,16 @@ isColEmpty [] _ = False
 isColEmpty row index = index < _SIZE_ && row !! index == E
 
 -- Q#05
+-- take a `Board` value and return a new `Board` with one column removed.
+dropFirstCol :: Board -> Board
+dropFirstCol [] = []
+dropFirstCol [row] = [tail row]
+dropFirstCol (row:rows) = tail row : dropFirstCol rows
 
-dropFirstCol = undefined
-
-
-dropLastCol = undefined
-
+dropLastCol :: Board -> Board
+dropLastCol [] = []
+dropLastCol [row] = [take (_SIZE_-1) row]
+dropLastCol (row:rows) = take (_SIZE_-1) row : dropLastCol rows
 -- Q#06
 
 getDiag1 = undefined
