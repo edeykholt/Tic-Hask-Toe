@@ -45,17 +45,22 @@ dropFirstCol (row:rows) = tail row : dropFirstCol rows
 
 dropLastCol :: Board -> Board
 dropLastCol [] = []
-dropLastCol [row] = [take (_SIZE_-1) row]
-dropLastCol (row:rows) = take (_SIZE_-1) row : dropLastCol rows
+dropLastCol [row] = [init row]
+dropLastCol (row:rows) = init row : dropLastCol rows
 -- Q#06
+-- take a `Board` value and return a `Line` value corresponding to one of the diagonal lines on the board.
+getDiag1 :: Board -> Line
+getDiag1 [] = []
+getDiag1 [row] = [head row] -- operating on the last row on the input Board
+getDiag1 (row:rows) = head row : getDiag1 (dropFirstCol rows)
 
-getDiag1 = undefined
+getDiag2 :: Board -> Line
+getDiag2 [] = []
+getDiag2 [row] = [last row] -- operating on the last row on input Board
+getDiag2 (row:rows) = last row : getDiag2 (dropLastCol rows)
 
-
-getDiag2 = undefined
-
-
-getAllLines = undefined
+getAllLines :: Board -> [Line]
+getAllLines board = board ++ transpose board ++ [getDiag1 board] ++ [getDiag2 board]
 
 -- *** Assignment 3-2 ***
 
