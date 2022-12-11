@@ -121,5 +121,20 @@ stringToMove (rowChar:colChar:xs) =
 stringToMove [_] = _INVALID_MOVE_
 
 -- Q#10
+-- takes an `Player` value, an `Int` value specifying a column index, and a `Row` value. It will return a new row with the square at the specified column replaced with the active player's tick mark.
+rsX :: Int -> Row -> Row
+rsX colIndex oldRow = rsSquare X colIndex oldRow 
 
-replaceSquareInRow = undefined
+rsO :: Int -> Row -> Row
+rsO colIndex oldRow = rsSquare O colIndex oldRow 
+
+rsSquare :: Square -> Int -> Row -> Row
+rsSquare square colIndex oldRow 
+    | null oldRow        = []
+    | colIndex == 0      = square : snd (splitAt (colIndex+1) oldRow )
+    | colIndex <0        = []
+    | colIndex >= _SIZE_ = oldRow
+    | otherwise          = fst (splitAt colIndex oldRow) ++ [square] ++ snd (splitAt (colIndex+1) oldRow)
+
+replaceSquareInRow :: Player -> Int -> Row -> Row
+replaceSquareInRow player colIndex oldRow = rsSquare player colIndex oldRow
