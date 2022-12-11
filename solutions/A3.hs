@@ -17,18 +17,18 @@ showInts (i:is) = [show i] ++ showInts is
 
 _HEADER_ = formatLine (showInts _RANGE_)
 
--- use inductive recursion??
--- zip?
--- _HEADER_ = intercalate ([" "] ++ showInts _RANGE_ )
-
 -- Q#02
-
-showSquares = undefined
+-- takes a list of `Square` values and produces a list of strings.
+showSquares :: [Square] -> [String]
+showSquares [] = []
+showSquares (x:xs) = [showSquare x] ++ showSquares xs
 
 
 -- Q#03
-
-formatRows = undefined
+-- takes a list of `Row` values and produces a list of formatted strings by recursively applying  `showSquares` and `formatLine` to each row.
+formatRows :: [Row] -> [String]
+formatRows [] = []
+formatRows (x:xs) = formatLine (showSquares x) : formatRows xs
 
 -- Q#04
 
