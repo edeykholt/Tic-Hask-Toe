@@ -31,8 +31,10 @@ formatRows [] = []
 formatRows (x:xs) = formatLine (showSquares x) : formatRows xs
 
 -- Q#04
-
-isColEmpty = undefined
+-- takes a `Row` and an `Int` value corresponding to a column index and returns a boolean value indicating whether the corresponding square is empty.
+isColEmpty :: Row -> Int -> Bool
+isColEmpty [] _ = False
+isColEmpty row index = index < _SIZE_ && row !! index == E
 
 -- Q#05
 
