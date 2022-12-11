@@ -2,17 +2,24 @@ module A3 where
 
 import A1
 import A2
+import Data.List (intercalate, elemIndex)
 
 import Data.List (transpose)
 
 -- *** Assignment 3-1 ***
 
 -- Q#01
+-- takes a list of `Int` values and returns a list of strings.
+showInts :: [Int] -> [String]
+showInts [] = []
+showInts [i] = [show i]
+showInts (i:is) = [show i] ++ showInts is
 
-showInts = undefined
+_HEADER_ = formatLine (showInts _RANGE_)
 
-
-_HEADER_ = undefined
+-- use inductive recursion??
+-- zip?
+-- _HEADER_ = intercalate ([" "] ++ showInts _RANGE_ )
 
 -- Q#02
 
