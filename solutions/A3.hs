@@ -65,8 +65,27 @@ getAllLines board = board ++ transpose board ++ [getDiag1 board] ++ [getDiag2 bo
 -- *** Assignment 3-2 ***
 
 -- Q#07
+-- replace a square at the coordinates of a provided move with a given player's square.
+putSquare :: Player -> Board -> Move -> Board
+putSquare _ [] _ = []
+putSquare player (row:rows) (rowIndex, colIndex) = go 0 row rows rowIndex 
+    where
+        go :: Int -> Row -> [Row] -> Int -> Board
+        -- currentRowIndex currentRow remainingRows rowIndex 
+        go currentRowIndex currentRow []            rowIndex  = 
+            if currentRowIndex == rowIndex 
+                then 
+                    [replaceSquareInRow player colIndex currentRow]
+                else
+                    [currentRow]
 
-putSquare = undefined
+        go currentRowIndex currentRow remainingRows rowIndex  = 
+            if currentRowIndex == rowIndex 
+                then 
+                    replaceSquareInRow player colIndex currentRow : go (currentRowIndex + 1) (head remainingRows) (tail remainingRows) (rowIndex -1)
+                else
+                    currentRow : go (currentRowIndex+1) (head remainingRows) (tail remainingRows) (rowIndex -1)
+
 
 -- Q#08
 
