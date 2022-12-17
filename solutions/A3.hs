@@ -71,21 +71,11 @@ putSquare _ [] _ = []
 putSquare player (row:rows) (rowIndex, colIndex) = go 0 row rows rowIndex 
     where
         go :: Int -> Row -> [Row] -> Int -> Board
-        -- currentRowIndex currentRow remainingRows rowIndex 
-        go currentRowIndex currentRow []            rowIndex  = 
-            if currentRowIndex == rowIndex 
-                then 
-                    [replaceSquareInRow player colIndex currentRow]
-                else
-                    [currentRow]
-
-        go currentRowIndex currentRow remainingRows rowIndex  = 
-            if currentRowIndex == rowIndex 
-                then 
-                    replaceSquareInRow player colIndex currentRow : go (currentRowIndex + 1) (head remainingRows) (tail remainingRows) (rowIndex -1)
-                else
-                    currentRow : go (currentRowIndex+1) (head remainingRows) (tail remainingRows) (rowIndex -1)
-
+        go currentRowIndex currentRow remainingRows rowIndex  
+            | currentRowIndex == rowIndex && not (null remainingRows)  = replaceSquareInRow player colIndex currentRow : go (currentRowIndex + 1) (head remainingRows) (tail remainingRows) rowIndex
+            | currentRowIndex == rowIndex && null remainingRows        = [replaceSquareInRow player colIndex currentRow] 
+            | null remainingRows                                       = [currentRow]
+            | otherwise                                                = currentRow : go (currentRowIndex + 1) (head remainingRows) (tail remainingRows) rowIndex
 
 -- Q#08
 
