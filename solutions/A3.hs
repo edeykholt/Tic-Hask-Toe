@@ -103,9 +103,9 @@ isValidMove [] _ = False
 isValidMove b m = isMoveInBounds m && go 0 b m
     where
         go :: Int -> Board -> Move -> Bool
-        go _ ([currentRow]) (_, moveColumn) = isColEmpty currentRow moveColumn
-        go currentRowIndex  (currentRow : remainingRows) (moveRow, moveColumn) = 
-            if (currentRowIndex == moveRow)
-            then isColEmpty currentRow moveColumn 
-            else go (currentRowIndex + 1) remainingRows (moveRow, moveColumn)
+        go _ [] (_, _) = False
+        go _ [currentRow] (_, moveColumn) = isColEmpty currentRow moveColumn
+        go currentRowIndex  (currentRow : remainingRows) (moveRow, moveColumn) 
+            | currentRowIndex == moveRow = isColEmpty currentRow moveColumn 
+            | otherwise =  go (currentRowIndex + 1) remainingRows (moveRow, moveColumn)
             
