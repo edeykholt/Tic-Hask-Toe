@@ -98,5 +98,14 @@ isWinningLine player line = go line False
         go (x : xs) acc = (x == player) && go xs acc
 
 -- Q#10
-
-isValidMove = undefined
+isValidMove :: Board -> Move -> Bool
+isValidMove [] _ = False
+isValidMove b m = isMoveInBounds m && go 0 b m
+    where
+        go :: Int -> Board -> Move -> Bool
+        go _ ([currentRow]) (_, moveColumn) = isColEmpty currentRow moveColumn
+        go currentRowIndex  (currentRow : remainingRows) (moveRow, moveColumn) = 
+            if (currentRowIndex == moveRow)
+            then isColEmpty currentRow moveColumn 
+            else go (currentRowIndex + 1) remainingRows (moveRow, moveColumn)
+            
