@@ -88,8 +88,14 @@ prependRowIndices s = go (indexRowStrings s) []
         go ((a, s) : as) acc   = ([a] ++ s) : go as acc
 
 -- Q#09
-
-isWinningLine = undefined
+isWinningLine :: Player -> Line -> Bool
+isWinningLine _ [] = False
+isWinningLine player line = go line False
+    where
+        go :: Line -> Bool -> Bool
+        go [] _         = False
+        go [x] acc      = x == player
+        go (x : xs) acc = (x == player) && go xs acc
 
 -- Q#10
 
