@@ -78,8 +78,14 @@ putSquare player (row:rows) (rowIndex, colIndex) = go 0 row rows rowIndex
             | otherwise                                                = currentRow : go (currentRowIndex + 1) (head remainingRows) (tail remainingRows) rowIndex
 
 -- Q#08
-
-prependRowIndices = undefined
+prependRowIndices :: [String] -> [String]
+prependRowIndices s = go (indexRowStrings s) []
+    where
+        go :: [(Char, String)] -> [String] -> [String]
+        --     [(prefixChar, stringToPrefix)] -> accumulatedOutputStrings
+        go [] []          = []
+        go [] acc         = acc
+        go ((a, s) : as) acc   = ([a] ++ s) : go as acc
 
 -- Q#09
 
