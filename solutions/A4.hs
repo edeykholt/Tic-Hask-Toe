@@ -43,8 +43,8 @@ isWinningLine_ player line = null (filter (\cell -> cell /= player || cell == E)
 -- *** Assignment 4-2 *** --
 
 -- Q#07
-
-isWinningLine = undefined
+isWinningLine :: Player -> Line -> Bool
+isWinningLine player line = not (null line) && foldr (\cell acc -> acc && (cell == player)) True line
 
 -- Q#08
 
