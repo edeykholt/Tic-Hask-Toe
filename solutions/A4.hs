@@ -11,32 +11,33 @@ import A3 hiding (
   isWinningLine,
   prependRowIndices
   )
+import Data.List (intercalate)
 
 -- *** Assignment 4-1 *** --
 
 -- Q#01
-
-_HEADER_ = undefined
+-- _HEADER_ = String
+_HEADER_ = _SEP_ ++  intercalate "" (  map (\i -> show i ++ _SEP_) _RANGE_ )
 
 -- Q#02
-
-showSquares = undefined
+showSquares :: [Square] -> [String]
+showSquares squares = map (\s -> showSquare s) squares
 
 -- Q#03
-
-dropFirstCol = undefined
+dropFirstCol :: Board -> Board
+dropFirstCol board = map (\row -> tail row) board
 
 -- Q#04
-
-dropLastCol = undefined
+dropLastCol :: Board -> Board
+dropLastCol board = map (\row -> init row) board
 
 --Q#05
-
-formatRows = undefined
+formatRows :: [Row] -> [String]
+formatRows rows =  map (\row -> formatLine (showSquares row)) rows 
 
 -- Q#06
-
-isWinningLine_ = undefined
+isWinningLine_ :: Player -> Line -> Bool
+isWinningLine_ player line = null (filter (\cell -> cell /= player || cell == E) line) && line /= []
 
 
 -- *** Assignment 4-2 *** --
