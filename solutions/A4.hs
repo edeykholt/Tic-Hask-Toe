@@ -62,11 +62,16 @@ _O_WIN_ = [ [O, X, O]
           ]
 
 -- Q#09
+getGameState :: Board -> GameState
+getGameState board  
+  | hasWon O board = XWon
+  | hasWon X board = OWon
+  | isTied board = Tie
+  | otherwise = InProgress
 
-getGameState = undefined
-
-
-playMove = undefined
+playMove :: Player -> Board -> Move -> (GameState, Board)
+playMove p b m = (getGameState newBoard, newBoard)
+  where newBoard = putSquare p b m
 
 -- Q#10
 
