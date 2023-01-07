@@ -47,8 +47,19 @@ isWinningLine :: Player -> Line -> Bool
 isWinningLine player line = not (null line) && foldr (\cell acc -> acc && (cell == player)) True line
 
 -- Q#08
+-- function `hasWon` that takes a `Player` and a `Board` value as inputs and returns a boolean value indicating whether the player has a winning line anywhere in the board.
+hasWon :: Player -> Board -> Bool
+hasWon player board = foldr (\line acc -> acc || isWinningLine player line ) False (getAllLines board)
 
-hasWon = undefined
+_X_WIN_ = [ [X, O, O]
+          , [O, X, O]
+          , [O, O, X]
+          ]
+
+_O_WIN_ = [ [O, X, O]
+          , [X, X, O]
+          , [X, O, O]
+          ]
 
 -- Q#09
 
