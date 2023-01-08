@@ -17,7 +17,7 @@ import Data.List (intercalate)
 
 -- Q#01
 -- _HEADER_ = String
-_HEADER_ = _SEP_ ++  intercalate "" (  map (\i -> show i ++ _SEP_) _RANGE_ )
+_HEADER_ = " " ++ _SEP_ ++  intercalate "" (  map (\i -> show i ++ _SEP_) _RANGE_ )
 
 -- Q#02
 showSquares :: [Square] -> [String]
@@ -69,14 +69,20 @@ getGameState board
   | isTied board = Tie
   | otherwise = InProgress
 
+-- apply a player move and return both the resulting `GameState` and an updated board.
 playMove :: Player -> Board -> Move -> (GameState, Board)
 playMove p b m = (getGameState newBoard, newBoard)
   where newBoard = putSquare p b m
 
 -- Q#10
-
-prependRowIndices = undefined
+prependRowIndices :: [String] -> [String]
+prependRowIndices ss = zipWith (\x y -> x : y) ['A' ..] ss
 
 -- Q#11
-
-formatBoard = undefined
+formatBoard :: Board -> String
+-- formatBoard b =   unlines (_HEADER_ : ( prependRowIndices $ formatRows b ))
+-- formatBoard b =   unlines $ _HEADER_ : ( prependRowIndices $ formatRows b )
+-- formatBoard b =   unlines $ _HEADER_ : ( prependRowIndices $ formatRows b )
+-- formatBoard b =   unlines $ _HEADER_ : prependRowIndices (formatRows b)
+formatBoard b = unlines . (_HEADER_ :) . prependRowIndices $ formatRows b
+-- (\xs -> _HEADER_ : xs)
