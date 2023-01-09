@@ -45,7 +45,7 @@ type Player = Square
 type Row = [Square]
 type Line = [Square]
 type Board = [] Row
-type Move = (Int, Int)
+type Move = (Int,Int)
 
 -- Q#09
 getFirstPlayer :: Bool -> Player

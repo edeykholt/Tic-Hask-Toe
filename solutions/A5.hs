@@ -31,14 +31,14 @@ firstPlayer = _RANDOM_BOOL_ >>= \b -> print $ getFirstPlayer b
 
 -- Q#04
 getMove :: Board -> IO ()
-getMove = undefined
--- getMove board = getLine >>= (\move -> validateMove board move)
---    where 
---    validateMove b m 
---        | isValidMove b m  = print m >> getMove b
---        | otherwise               = print "bad move. Try again."  >> getMove b
-   
-     
+getMove board = getLine >>= (\moveString -> validateMove board moveString)
+    where 
+    validateMove :: Board -> String -> IO ()    
+    validateMove b m 
+        | isValidMove b move = print move >> getMove b
+        | otherwise               = print "Invalid move! Try again"  >> getMove b
+        where move = stringToMove m
+        
 -- Q#05
 
 play = undefined
