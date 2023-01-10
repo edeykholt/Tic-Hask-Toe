@@ -24,8 +24,8 @@ reverse_ xs = go [] xs
 sum' :: Num a => [a] -> a
 sum' ns = foldr (+) 0 ns
 
-product' :: Num a => [a] a
-product' = foldr (*) 1
+-- product' :: Num a => [a] a
+-- product' = foldr (*) 1
 
 and' :: [Bool] -> Bool
 and' bs = foldr (&&) True bs
@@ -33,8 +33,8 @@ and' bs = foldr (&&) True bs
 or' :: [Bool] -> Bool
 or' bs = foldr (||) False bs
 
-elem' :: Eq a => a -> [a] -> Bool
-elem' q es = foldr (\e b -> || e == q) False es
+-- elem' :: Eq a => a -> [a] -> Bool
+-- elem' q es = foldr (\e b -> || e == q) False es
 
 maximum' :: Ord a => [a] -> a 
 maximum' [] = error "empty list"
@@ -44,12 +44,12 @@ minimum' :: Ord a => [a] -> a
 minimum' [] = error "empty list"
 minimum' (x:xs) = foldr min x xs
 
-reverse' :: [a] -> [a]
-reverse' es = foldr (\e reversed -> reversed [e]) [] es
+-- reverse' :: [a] -> [a]
+-- reverse' es = foldr (\e reversed -> reversed [e]) [] es
 -- above is inefficient.  "O(n)" See below...
 
-reverse'' :: [a] -> [a]
-reverse'' = foldl' (\reversed e -> e : reversed ) [] es
+-- reverse'' :: [a] -> [a]
+-- reverse'' = foldl' (\reversed e -> e : reversed ) [] es
 -- above is more efficient  "O(1)"
 
 reverse''' es = foldl' (flip (:)) [] es
