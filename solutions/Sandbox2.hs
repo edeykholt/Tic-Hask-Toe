@@ -21,11 +21,11 @@ reverse_ xs = go [] xs
         -- go "ts" ('a' : "r") => go ('a' : "ts") "r"
         -- go "ats" ('r' : [] ) => go ('r' : "ats") [] => "rats"
 
-        sum' :: Num a => [a] -> a
-        sum' ns = foldr (+) 0 ns
+sum' :: Num a => [a] -> a
+sum' ns = foldr (+) 0 ns
 
-        product' :: Num a => [a] a
-        product' = foldr (*) 1
+product' :: Num a => [a] a
+product' = foldr (*) 1
 
 and' :: [Bool] -> Bool
 and' bs = foldr (&&) True bs

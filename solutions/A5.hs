@@ -30,14 +30,14 @@ firstPlayer :: IO ()
 firstPlayer = _RANDOM_BOOL_ >>= \b -> print $ getFirstPlayer b
 
 -- Q#04
-getMove :: Board -> IO ()
-getMove board = getLine >>= (\moveString -> validateMove board moveString)
+getMove :: Board -> IO Move
+getMove board = getLine >>= \moveString -> validateMove board moveString
     where 
-    validateMove :: Board -> String -> IO ()    
-    validateMove b m 
-        | isValidMove b move = print move >> getMove b
-        | otherwise               = print "Invalid move! Try again"  >> getMove b
-        where move = stringToMove m
+        validateMove :: Board -> String -> IO Move
+        validateMove b m
+            | isValidMove b move = return move
+            | otherwise          = print "Invalid move! Try again"  >> getMove b
+            where move = stringToMove m
         
 -- Q#05
 play :: Board -> Player -> IO ()
@@ -45,19 +45,16 @@ play b p =
     when _DISPLAY_LOGO_ printLogo >>
     printBoard b >>
     print (promptPlayer p) >>
-    getMove b >> -- TODO use results and pass move to next
-    return ( playMove p b (1,1) ) >>= 
+    getMove b >>= -- TODO use results and pass move to next
+    \move ->
+        return ( playMove p b move ) >>= 
         \(gameState,newBoard) -> 
             if gameState == XWon || gameState == OWon || gameState == Tie
                 then
                     print (showGameState gameState) >>
                     printBoard newBoard
-                else if gameState == InProgress
-                    then
-                        play newBoard p 
-                    else
-                        play newBoard $ switchPlayer p
-
+                else
+                    play newBoard $ switchPlayer p 
 
 -- *** Assignment 5-2 *** --
 

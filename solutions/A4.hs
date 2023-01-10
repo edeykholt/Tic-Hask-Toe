@@ -64,8 +64,8 @@ _O_WIN_ = [ [O, X, O]
 -- Q#09
 getGameState :: Board -> GameState
 getGameState board  
-  | hasWon O board = XWon
-  | hasWon X board = OWon
+  | hasWon O board = OWon
+  | hasWon X board = XWon
   | isTied board = Tie
   | otherwise = InProgress
 
