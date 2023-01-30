@@ -36,7 +36,7 @@ data Square = E | X | O
   -- show E = "_"
 
 -- Q#07
-data GameState = XWon | OWon | Tie | InProgress
+data GameState = XWon | OWon | Tie | Playing
   deriving (Eq, Show)
 
 

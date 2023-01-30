@@ -67,7 +67,7 @@ getGameState board
   | hasWon O board = OWon
   | hasWon X board = XWon
   | isTied board = Tie
-  | otherwise = InProgress
+  | otherwise = Playing
 
 -- apply a player move and return both the resulting `GameState` and an updated board.
 playMove :: Player -> Board -> Move -> (GameState, Board)
